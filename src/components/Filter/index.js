@@ -3,7 +3,7 @@ import { useDrop } from "react-dnd";
 import PropTypes from "prop-types";
 
 import styles from "./Filter.module.scss";
-const Filter = ({ accept, lastDroppedItem, onDrop }) => {
+const Filter = ({ filters, setFilters, accept, lastDroppedItem, onDrop }) => {
   const [, drop] = useDrop({
     accept,
     drop: onDrop,
@@ -12,7 +12,14 @@ const Filter = ({ accept, lastDroppedItem, onDrop }) => {
       canDrop: monitor.canDrop(),
     }),
   });
-
+  const handleClear = (clearFilter) => {
+    const modifiedFilters = filters.map((filter) => {
+      return filter.accepts[0] === clearFilter
+        ? { ...filter, lastDroppedItem: [] }
+        : filter;
+    });
+    setFilters(modifiedFilters);
+  };
   return (
     <>
       <div className={styles.filter}>
@@ -33,13 +40,21 @@ const Filter = ({ accept, lastDroppedItem, onDrop }) => {
               : `${styles.filterDrop} ${styles.bgDimension}`
           }
         >
-          {lastDroppedItem && <p> {lastDroppedItem.join("-")}</p>}
+          {lastDroppedItem && <p> {lastDroppedItem.join(" - ")}</p>}
         </div>
+        <button
+          className={styles.clearFilter}
+          onClick={() => handleClear(accept[0])}
+        >
+          clear {accept[0]}
+        </button>
       </div>
     </>
   );
 };
 Filter.propTypes = {
+  setFilters: PropTypes.func.isRequired,
+  filters: PropTypes.array.isRequired,
   accept: PropTypes.array.isRequired,
   lastDroppedItem: PropTypes.array.isRequired,
   onDrop: PropTypes.func.isRequired,

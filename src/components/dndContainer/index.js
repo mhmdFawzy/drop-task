@@ -36,6 +36,8 @@ const Container = () => {
     <div className={styles.dndContainer}>
       {filters.map(({ accepts, lastDroppedItem }, index) => (
         <Filter
+          setFilters={setFilters}
+          filters={filters}
           accept={accepts}
           lastDroppedItem={lastDroppedItem}
           onDrop={(item) => handleDrop(index, item, accepts[0])}
