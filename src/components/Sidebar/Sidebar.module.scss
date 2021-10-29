@@ -1,0 +1,64 @@
+.sidebar {
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+
+    &Title {
+        padding: 8px;
+        margin: 0;
+    }
+
+    &List {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @media screen and (max-width: 700px) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebarItem {
+        display: block;
+        padding: 16px;
+        text-decoration: none;
+        margin: 1vw;
+        cursor: move;
+        border-radius: 8px;
+        color: #fff;
+
+        &Status {
+            color: #000;
+
+        }
+
+        &Dimension {
+            background-color: #219ebc;
+        }
+
+        &Measure {
+            background-color: #ffb703;
+        }
+
+        @media screen and (max-width: 700px) {
+
+            float: left;
+
+        }
+
+        @media screen and (max-width: 400px) {
+            text-align: center;
+            float: none;
+        }
+    }
+}

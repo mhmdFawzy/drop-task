@@ -1,0 +1,44 @@
+ .filter {
+
+     height: 45%;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+
+     &Title {
+         border-top-left-radius: 8px;
+         border-top-right-radius: 8px;
+         width: 15%;
+         height: 50%;
+         border-bottom: 1px solid #FFF;
+         padding: 4px 8px 0 8px;
+         color: #FFF;
+     }
+
+     &Drop {
+         width: 100%;
+         display: flex;
+         flex-grow: 1;
+         max-height: 50%;
+         justify-content: flex-start;
+         border-radius: 8px;
+         border-top-left-radius: 0;
+
+         p {
+             color: #FFF;
+             padding-left: 8px;
+             font-weight: 700;
+             margin: auto 0;
+         }
+     }
+
+     .bgMeasure {
+         background-color: #ffb703;
+     }
+
+     .bgDimension {
+         background-color: #219ebc;
+
+     }
+ }
