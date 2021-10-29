@@ -1,6 +1,8 @@
+@import "../../styles/colors";
+
 .sidebar {
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: $grey;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -35,19 +37,19 @@
         margin: 1vw;
         cursor: move;
         border-radius: 8px;
-        color: #fff;
+        color: $white;
 
         &Status {
-            color: #000;
+            color: $black;
 
         }
 
         &Dimension {
-            background-color: #219ebc;
+            background-color: $dimensionColor;
         }
 
         &Measure {
-            background-color: #ffb703;
+            background-color: $measureColor;
         }
 
         @media screen and (max-width: 700px) {
