@@ -1,15 +1,11 @@
-import { useState, useCallback, memo } from "react";
+import { useCallback, memo } from "react";
 import Filter from "../Filter";
 import { functionTypes } from "../../utils/functionTypes";
 import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
 
 import styles from "./Dndcontainer.module.scss";
-const Container = () => {
-  const [filters, setFilters] = useState([
-    { accepts: [functionTypes.DIMENSION], lastDroppedItem: [] },
-    { accepts: [functionTypes.MEASURE], lastDroppedItem: [] },
-  ]);
-
+const Container = ({ filters, setFilters }) => {
   const handleDrop = useCallback(
     (index, item, accepts) => {
       const { name } = item;
@@ -40,7 +36,7 @@ const Container = () => {
           filters={filters}
           accept={accepts}
           lastDroppedItem={lastDroppedItem}
-          onDrop={(item) => handleDrop(index, item, accepts[0])}
+          onDrop={(item) => handleDrop(index, item, accepts)}
           key={uuidv4()}
         />
       ))}
@@ -48,4 +44,8 @@ const Container = () => {
   );
 };
 
+Container.propTypes = {
+  filters: PropTypes.array.isRequired,
+  setFilters: PropTypes.func.isRequired,
+};
 export default memo(Container);
