@@ -10,7 +10,7 @@ import useAxios from '../../hooks/useAxios';
 const options = {
   responsive: true,
 };
-const MultiAxisLine = ({ filters, filtersFilled }) => {
+const MultiAxisLine = ({ filters }) => {
   const [filtersData, setFiltersData] = useState(filters);
 
   const { response, loading, error } = useAxios({

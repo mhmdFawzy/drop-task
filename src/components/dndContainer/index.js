@@ -15,7 +15,9 @@ const Container = ({ filters, setFilters }) => {
             ...prevState,
             [accepts]: {
               ...prevState[accepts],
-              lastDroppedItem: [...new Set([...prevState[accepts].lastDroppedItem, name])],
+              lastDroppedItem: [
+                ...new Set([...prevState[accepts].lastDroppedItem, name]),
+              ],
             },
           };
         });
@@ -50,5 +52,6 @@ const Container = ({ filters, setFilters }) => {
 };
 Container.propTypes = {
   setFilters: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
 };
 export default Container;

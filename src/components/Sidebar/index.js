@@ -10,11 +10,17 @@ const Sidebar = ({ listTitle, list, error, loading }) => {
       <p className={styles.sidebarTitle}>{listTitle}</p>
       <ul className={styles.sidebarList}>
         {loading ? (
-          <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>loading...</li>
+          <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>
+            loading...
+          </li>
         ) : (
           <>
             {error && (
-              <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>{error}</li>
+              <li
+                className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}
+              >
+                {error}
+              </li>
             )}
             {list &&
               list
@@ -42,6 +48,9 @@ const Sidebar = ({ listTitle, list, error, loading }) => {
 
 Sidebar.propTypes = {
   listTitle: PropTypes.string.isRequired,
+  list: PropTypes.array.isRequired,
+  error: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default memo(Sidebar);
