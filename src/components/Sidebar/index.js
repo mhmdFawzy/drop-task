@@ -1,27 +1,20 @@
-import { memo } from "react";
-import PropTypes from "prop-types";
-import styles from "./Sidebar.module.scss";
-import { v4 as uuidv4 } from "uuid";
-import DragItem from "../DragItem";
+import DragItem from '../DragItem';
+import PropTypes from 'prop-types';
+import { memo } from 'react';
+import styles from './Sidebar.module.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 const Sidebar = ({ listTitle, list, error, loading }) => {
   return (
     <div className={styles.sidebar}>
       <p className={styles.sidebarTitle}>{listTitle}</p>
-
       <ul className={styles.sidebarList}>
         {loading ? (
-          <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>
-            loading...
-          </li>
+          <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>loading...</li>
         ) : (
           <>
             {error && (
-              <li
-                className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}
-              >
-                {error}
-              </li>
+              <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>{error}</li>
             )}
             {list &&
               list
@@ -32,7 +25,7 @@ const Sidebar = ({ listTitle, list, error, loading }) => {
                       name={name}
                       type={type}
                       itemStyle={
-                        type === "dimension"
+                        type === 'dimension'
                           ? `${styles.sidebarItem} ${styles.sidebarItemDimension}`
                           : `${styles.sidebarItem} ${styles.sidebarItemMeasure}`
                       }

@@ -1,66 +1,63 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 .sidebar {
-    width: 200px;
-    background-color: $grey;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+  width: 200px;
+  background-color: $grey;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
 
-    &Title {
-        padding: 8px;
-        margin: 0;
+  &Title {
+    padding: 8px;
+    margin: 0;
+  }
+
+  &List {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (max-width: 700px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebarItem {
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+    margin: 1vw;
+    cursor: move;
+    border-radius: 8px;
+    color: $white;
+
+    &Status {
+      color: $black;
     }
 
-    &List {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    &Dimension {
+      background-color: $dimensionColor;
+    }
 
-        @media screen and (max-width: 700px) {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: 1fr;
-        }
+    &Measure {
+      background-color: $measureColor;
     }
 
     @media screen and (max-width: 700px) {
-        width: 100%;
-        height: auto;
-        position: relative;
+      float: left;
     }
 
-    .sidebarItem {
-        display: block;
-        padding: 16px;
-        text-decoration: none;
-        margin: 1vw;
-        cursor: move;
-        border-radius: 8px;
-        color: $white;
-
-        &Status {
-            color: $black;
-
-        }
-
-        &Dimension {
-            background-color: $dimensionColor;
-        }
-
-        &Measure {
-            background-color: $measureColor;
-        }
-
-        @media screen and (max-width: 700px) {
-
-            float: left;
-
-        }
-
-        @media screen and (max-width: 400px) {
-            text-align: center;
-            float: none;
-        }
+    @media screen and (max-width: 400px) {
+      text-align: center;
+      float: none;
     }
+  }
 }

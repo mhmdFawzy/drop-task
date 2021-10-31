@@ -1,6 +1,6 @@
-import { memo } from "react";
-import { useDrag } from "react-dnd";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { memo } from 'react';
+import { useDrag } from 'react-dnd';
 
 const DragItem = ({ name, type, itemStyle }) => {
   const [{ opacity }, drag] = useDrag(

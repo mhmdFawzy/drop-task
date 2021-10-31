@@ -1,4 +1,4 @@
 export const functionTypes = {
-  DIMENSION: "dimension",
-  MEASURE: "measure",
+  DIMENSION: 'dimension',
+  MEASURE: 'measure',
 };
