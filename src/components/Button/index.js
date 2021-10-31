@@ -1,3 +1,4 @@
+import { memo } from "react";
 import PropTypes from "prop-types";
 
 const Button = ({ styles, clickHandler, text }) => {
@@ -14,4 +15,4 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-export default Button;
+export default memo(Button);

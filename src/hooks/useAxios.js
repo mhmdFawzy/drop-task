@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://plotter-task.herokuapp.com";
 
-const useAxios = ({ url, method, body = null, headers = null }) => {
+const useAxios = ({ url, method, data = null, headers = null, dep }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setloading] = useState(true);
 
-  const fetchData = () => {
-    axios[method](url, JSON.parse(headers), JSON.parse(body))
+  const fetchData = useCallback(() => {
+    axios[method](url, JSON.parse(data), JSON.parse(headers))
       .then((res) => {
         setResponse(res.data);
       })
@@ -19,11 +19,11 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
       .finally(() => {
         setloading(false);
       });
-  };
+  }, [dep]);
 
   useEffect(() => {
     fetchData();
-  }, [method, url, body, headers]);
+  }, [method, url, data, headers, fetchData]);
 
   return { response, error, loading };
 };

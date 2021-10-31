@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import styles from "./Sidebar.module.scss";
 import { v4 as uuidv4 } from "uuid";
 import DragItem from "../DragItem";
+
 const Sidebar = ({ listTitle, list, error, loading }) => {
   return (
     <div className={styles.sidebar}>
       <p className={styles.sidebarTitle}>{listTitle}</p>
+
       <ul className={styles.sidebarList}>
         {loading ? (
           <li className={`${styles.sidebarItem} ${styles.sidebarItemStatus}`}>

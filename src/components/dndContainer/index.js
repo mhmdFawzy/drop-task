@@ -1,4 +1,4 @@
-import { useCallback, memo } from "react";
+import { useCallback } from "react";
 import Filter from "../Filter";
 import { functionTypes } from "../../utils/functionTypes";
 import { v4 as uuidv4 } from "uuid";
@@ -7,45 +7,52 @@ import PropTypes from "prop-types";
 import styles from "./Dndcontainer.module.scss";
 const Container = ({ filters, setFilters }) => {
   const handleDrop = useCallback(
-    (index, item, accepts) => {
+    (item, accepts) => {
       const { name } = item;
-      const updatedFilters = [...filters];
       if (accepts === functionTypes.MEASURE) {
-        updatedFilters[index] = {
-          ...updatedFilters[index],
-          lastDroppedItem: [
-            ...new Set([...updatedFilters[index].lastDroppedItem, name]),
-          ],
-        };
-        setFilters(updatedFilters);
+        setFilters((prevState) => {
+          return {
+            ...prevState,
+            [accepts]: {
+              ...prevState[accepts],
+              lastDroppedItem: [
+                ...new Set([...prevState[accepts].lastDroppedItem, name]),
+              ],
+            },
+          };
+        });
       } else {
-        updatedFilters[index] = {
-          ...updatedFilters[index],
-          lastDroppedItem: [name],
-        };
-        setFilters(updatedFilters);
+        setFilters((prevState) => {
+          return {
+            ...prevState,
+            [accepts]: {
+              ...prevState[accepts],
+              lastDroppedItem: [name],
+            },
+          };
+        });
       }
     },
-    [filters]
+    [setFilters]
   );
+
   return (
     <div className={styles.dndContainer}>
-      {filters.map(({ accepts, lastDroppedItem }, index) => (
+      {Object.entries(filters).map(([, value]) => (
         <Filter
           setFilters={setFilters}
           filters={filters}
-          accept={accepts}
-          lastDroppedItem={lastDroppedItem}
-          onDrop={(item) => handleDrop(index, item, accepts)}
+          accept={value.accepts}
+          lastDroppedItem={value.lastDroppedItem}
+          onDrop={(item) => handleDrop(item, value.accepts)}
           key={uuidv4()}
         />
       ))}
     </div>
   );
 };
-
 Container.propTypes = {
-  filters: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
   setFilters: PropTypes.func.isRequired,
 };
-export default memo(Container);
+export default Container;
