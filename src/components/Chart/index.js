@@ -1,23 +1,27 @@
-import { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
-import useAxios from "../../hooks/useAxios";
-import { functionTypes } from "../../utils/functionTypes";
-import { dataColors } from "../../utils/dataColors";
-import styles from "./Chart.module.scss";
+import { memo, useEffect, useState } from 'react';
+
+import { Line } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
+import { dataColors } from '../../utils/dataColors';
+import { functionTypes } from '../../utils/functionTypes';
+import styles from './Chart.module.scss';
+import useAxios from '../../hooks/useAxios';
 
 const options = {
   responsive: true,
 };
-const MultiAxisLine = ({ filters }) => {
+const MultiAxisLine = ({ filters, filtersFilled }) => {
+  const [filtersData, setFiltersData] = useState(filters);
+
   const { response, loading, error } = useAxios({
-    method: "post",
-    url: "/data",
-    headers: JSON.stringify({ accept: "*/*" }),
+    method: 'post',
+    url: '/data',
+    headers: JSON.stringify({ accept: '*/*' }),
     data: JSON.stringify({
       measures: filters[functionTypes.MEASURE].lastDroppedItem,
-      dimension: filters[functionTypes.DIMENSION].lastDroppedItem.join(""),
+      dimension: filters[functionTypes.DIMENSION].lastDroppedItem.join(''),
     }),
-    dep: filters,
+    depend: filtersData,
   });
   const [chartData, setChartData] = useState([]);
   const [dataLabels, setDataLabels] = useState([]);
@@ -40,7 +44,7 @@ const MultiAxisLine = ({ filters }) => {
             fill: false,
             backgroundColor: dataColors[i],
             borderColor: dataColors[i + 3],
-            yAxisID: "y-axis-1",
+            yAxisID: 'y-axis-1',
           };
         });
       });
@@ -50,6 +54,9 @@ const MultiAxisLine = ({ filters }) => {
       setDataLabels([]);
     };
   }, [chartData]);
+  useEffect(() => {
+    setFiltersData(filters);
+  }, [filters]);
   return (
     <>
       {loading ? (
@@ -57,7 +64,7 @@ const MultiAxisLine = ({ filters }) => {
       ) : (
         <div className={styles.chartContainer}>
           {error && <div>Error</div>}
-          {chartData && (
+          {chartData && filters && (
             <Line
               data={{
                 labels: dataLabels,
@@ -71,4 +78,8 @@ const MultiAxisLine = ({ filters }) => {
     </>
   );
 };
-export default MultiAxisLine;
+MultiAxisLine.propTypes = {
+  filters: PropTypes.object.isRequired,
+};
+
+export default memo(MultiAxisLine);
