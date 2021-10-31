@@ -1,5 +1,6 @@
 import Button from '../Button';
 import PropTypes from 'prop-types';
+import { functionTypes } from '../../utils/functionTypes';
 import styles from './Filter.module.scss';
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -19,7 +20,9 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
         ...prevState,
         [accept]: {
           ...prevState[accept],
-          lastDroppedItem: prevState[accept].lastDroppedItem.filter((item) => item !== removeItem),
+          lastDroppedItem: prevState[accept].lastDroppedItem.filter(
+            (item) => item !== removeItem
+          ),
         },
       };
     });
@@ -40,28 +43,29 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
       <div className={styles.filter}>
         <span
           className={
-            accept === 'measure'
+            accept === functionTypes.MEASURE
               ? `${styles.filterTitle} ${styles.bgMeasure}`
               : `${styles.filterTitle} ${styles.bgDimension}`
-          }>
-          {accept === 'measure' ? 'Measure' : 'Dimension'}
+          }
+        >
+          {accept === functionTypes.MEASURE ? 'Measure' : 'Dimension'}
         </span>
         <div
           ref={drop}
           className={
-            accept === 'measure'
+            accept === functionTypes.MEASURE
               ? `${styles.filterDrop} ${styles.bgMeasure}`
               : `${styles.filterDrop} ${styles.bgDimension}`
-          }>
-          {/* {lastDroppedItem && <p> {lastDroppedItem.join(" - ")}</p>} */}
+          }
+        >
           {lastDroppedItem &&
             lastDroppedItem.map((item) => (
               <span className={styles.filterBtn} key={uuidv4()}>
                 {item}
-                {accept === 'measure' && (
+                {accept === functionTypes.MEASURE && (
                   <Button
                     styles={styles.removeFilter}
-                    clickHandler={(e) => handleRemove(accept, item)}
+                    clickHandler={() => handleRemove(accept, item)}
                     text={'X'}
                   />
                 )}
@@ -70,7 +74,7 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
         </div>
         <Button
           styles={styles.clearFilter}
-          clickHandler={(e) => handleClear(accept)}
+          clickHandler={() => handleClear(accept)}
           text={`Clear ${accept}`}
         />
       </div>
