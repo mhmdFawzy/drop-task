@@ -2,6 +2,7 @@ import { memo, useEffect, useState } from 'react';
 
 import { Line } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { dataColors } from '../../utils/dataColors';
 import { functionTypes } from '../../utils/functionTypes';
 import styles from './Chart.module.scss';
@@ -81,5 +82,7 @@ const MultiAxisLine = ({ filters }) => {
 MultiAxisLine.propTypes = {
   filters: PropTypes.object.isRequired,
 };
-
-export default memo(MultiAxisLine);
+const filtersIsSame = (prevFilters, nextFilters) => {
+  return _.isEqual(prevFilters, nextFilters);
+};
+export default memo(MultiAxisLine, filtersIsSame);
