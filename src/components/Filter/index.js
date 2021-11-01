@@ -20,9 +20,7 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
         ...prevState,
         [accept]: {
           ...prevState[accept],
-          lastDroppedItem: prevState[accept].lastDroppedItem.filter(
-            (item) => item !== removeItem
-          ),
+          lastDroppedItem: prevState[accept].lastDroppedItem.filter((item) => item !== removeItem),
         },
       };
     });
@@ -46,8 +44,7 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
             accept === functionTypes.MEASURE
               ? `${styles.filterTitle} ${styles.bgMeasure}`
               : `${styles.filterTitle} ${styles.bgDimension}`
-          }
-        >
+          }>
           {accept === functionTypes.MEASURE ? 'Measure' : 'Dimension'}
         </span>
         <div
@@ -56,8 +53,7 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
             accept === functionTypes.MEASURE
               ? `${styles.filterDrop} ${styles.bgMeasure}`
               : `${styles.filterDrop} ${styles.bgDimension}`
-          }
-        >
+          }>
           {lastDroppedItem &&
             lastDroppedItem.map((item) => (
               <span className={styles.filterBtn} key={uuidv4()}>

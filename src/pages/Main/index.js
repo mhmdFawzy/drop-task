@@ -49,12 +49,7 @@ const Main = () => {
 
   return (
     <div>
-      <Sidebar
-        listTitle="Columns"
-        list={data}
-        error={error}
-        loading={loading}
-      />
+      <Sidebar listTitle="Columns" list={data} error={error} loading={loading} />
       <div className={styles.content}>
         <Container filters={filters} setFilters={setFilters} />
         {filtersFilled && <MultiAxisLine filters={filters} />}

@@ -15,9 +15,7 @@ const Container = ({ filters, setFilters }) => {
             ...prevState,
             [accepts]: {
               ...prevState[accepts],
-              lastDroppedItem: [
-                ...new Set([...prevState[accepts].lastDroppedItem, name]),
-              ],
+              lastDroppedItem: [...new Set([...prevState[accepts].lastDroppedItem, name])],
             },
           };
         });
