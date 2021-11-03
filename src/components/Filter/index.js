@@ -11,8 +11,8 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
     drop: onDrop,
     collect: (monitor) => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
+      canDrop: monitor.canDrop()
+    })
   });
   const handleRemove = (accept, removeItem) => {
     setFilters((prevState) => {
@@ -20,8 +20,8 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
         ...prevState,
         [accept]: {
           ...prevState[accept],
-          lastDroppedItem: prevState[accept].lastDroppedItem.filter((item) => item !== removeItem),
-        },
+          lastDroppedItem: prevState[accept].lastDroppedItem.filter((item) => item !== removeItem)
+        }
       };
     });
   };
@@ -31,8 +31,8 @@ const Filter = ({ setFilters, accept, lastDroppedItem, onDrop }) => {
         ...prevState,
         [clearFilter]: {
           ...prevState[clearFilter],
-          lastDroppedItem: [],
-        },
+          lastDroppedItem: []
+        }
       };
     });
   };
@@ -83,6 +83,6 @@ Filter.propTypes = {
   setFilters: PropTypes.func.isRequired,
   accept: PropTypes.string.isRequired,
   lastDroppedItem: PropTypes.array.isRequired,
-  onDrop: PropTypes.func.isRequired,
+  onDrop: PropTypes.func.isRequired
 };
 export default Filter;

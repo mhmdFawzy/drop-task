@@ -10,7 +10,7 @@ import useAxios from '../../hooks/useAxios';
 const Main = () => {
   const { response, loading, error } = useAxios({
     method: 'get',
-    url: '/columns',
+    url: '/columns'
   });
   const [data, setData] = useState([]);
 
@@ -22,12 +22,12 @@ const Main = () => {
   const [filters, setFilters] = useState({
     [functionTypes.DIMENSION]: {
       accepts: functionTypes.DIMENSION,
-      lastDroppedItem: [],
+      lastDroppedItem: []
     },
     [functionTypes.MEASURE]: {
       accepts: functionTypes.MEASURE,
-      lastDroppedItem: [],
-    },
+      lastDroppedItem: []
+    }
   });
   const [filtersFilled, setFiltersFilled] = useState(false);
 

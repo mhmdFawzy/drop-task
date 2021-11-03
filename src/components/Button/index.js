@@ -12,7 +12,7 @@ const Button = ({ styles, clickHandler, text }) => {
 Button.propTypes = {
   styles: PropTypes.string.isRequired,
   clickHandler: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default memo(Button);

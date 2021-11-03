@@ -8,8 +8,8 @@ const DragItem = ({ name, type, itemStyle }) => {
       type,
       item: { name },
       collect: (monitor) => ({
-        opacity: monitor.isDragging() ? 0.4 : 1,
-      }),
+        opacity: monitor.isDragging() ? 0.4 : 1
+      })
     }),
     [name, type]
   );
@@ -22,6 +22,6 @@ const DragItem = ({ name, type, itemStyle }) => {
 DragItem.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  itemStyle: PropTypes.string.isRequired,
+  itemStyle: PropTypes.string.isRequired
 };
 export default memo(DragItem);

@@ -44,7 +44,7 @@ Sidebar.propTypes = {
   listTitle: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired,
   error: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default memo(Sidebar);

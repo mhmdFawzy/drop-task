@@ -6,7 +6,7 @@ describe('getColumnsApi', () => {
     const { result } = renderHook(() =>
       useAxios({
         method: 'get',
-        url: '/columns',
+        url: '/columns'
       })
     );
     expect(result.current.loading).toBeTruthy();
@@ -16,7 +16,7 @@ describe('getColumnsApi', () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       useAxios({
         method: 'get',
-        url: '/columns',
+        url: '/columns'
       })
     );
 
@@ -27,8 +27,8 @@ describe('getColumnsApi', () => {
       expect.arrayContaining([
         expect.objectContaining({
           function: 'dimension',
-          name: 'Country',
-        }),
+          name: 'Country'
+        })
       ])
     );
   });
@@ -37,7 +37,7 @@ describe('getColumnsApi', () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       useAxios({
         method: 'get',
-        url: '/olumns',
+        url: '/olumns'
       })
     );
 

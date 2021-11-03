@@ -9,7 +9,7 @@ import styles from './Chart.module.scss';
 import useAxios from '../../hooks/useAxios';
 
 const options = {
-  responsive: true,
+  responsive: true
 };
 const MultiAxisLine = ({ filters }) => {
   const [filtersData, setFiltersData] = useState(filters);
@@ -20,9 +20,9 @@ const MultiAxisLine = ({ filters }) => {
     headers: JSON.stringify({ accept: '*/*' }),
     data: JSON.stringify({
       measures: filters[functionTypes.MEASURE].lastDroppedItem,
-      dimension: filters[functionTypes.DIMENSION].lastDroppedItem.join(''),
+      dimension: filters[functionTypes.DIMENSION].lastDroppedItem.join('')
     }),
-    depend: filtersData,
+    depend: filtersData
   });
   const [chartData, setChartData] = useState([]);
   const [dataLabels, setDataLabels] = useState([]);
@@ -45,7 +45,7 @@ const MultiAxisLine = ({ filters }) => {
             fill: false,
             backgroundColor: dataColors[i],
             borderColor: dataColors[i + 3],
-            yAxisID: 'y-axis-1',
+            yAxisID: 'y-axis-1'
           };
         });
       });
@@ -69,7 +69,7 @@ const MultiAxisLine = ({ filters }) => {
             <Line
               data={{
                 labels: dataLabels,
-                datasets: dataSets,
+                datasets: dataSets
               }}
               options={options}
             />
@@ -80,7 +80,7 @@ const MultiAxisLine = ({ filters }) => {
   );
 };
 MultiAxisLine.propTypes = {
-  filters: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired
 };
 const filtersIsSame = (prevFilters, nextFilters) => {
   return _.isEqual(prevFilters, nextFilters);
