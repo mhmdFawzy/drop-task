@@ -16,6 +16,7 @@ const useAxios = ({ url, method, data = null, headers = null, depend }) => {
       })
       .catch((err) => {
         setError(err);
+        console.log(err);
       })
       .finally(() => {
         setloading(false);
